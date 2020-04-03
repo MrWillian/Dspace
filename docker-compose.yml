@@ -15,7 +15,7 @@ services:
   web:
     container_name: web
     build: .
-    command: tail -f /dev/null #python code/manage.py runserver 0.0.0.0:8000
+    command: python dspace/manage.py runserver 0.0.0.0:8000
     volumes: 
       - .:/code
     ports:
