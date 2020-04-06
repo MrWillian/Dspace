@@ -1,10 +1,13 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from api.resources import UserResource
+from tastypie.api import Api
+from api.resources import UserResource, AddressResource
 
-user_resource = UserResource()
+v1_api = Api(api_name='v1')
+v1_api.register(UserResource())
+v1_api.register(AddressResource())
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(user_resource.urls))
+    url(r'^api/', include(v1_api.urls))
 ]
