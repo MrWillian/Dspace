@@ -6,4 +6,5 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN pip install django-tastypie
+RUN pip install djangorestframework
 COPY . /code/
