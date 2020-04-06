@@ -12,4 +12,4 @@ class AddressResource(ModelResource):
   user = fields.ForeignKey(UserResource, 'user')
   class Meta:
     queryset = Address.objects.all()
-    resource_name = 'Address'
+    resource_name = 'address'
