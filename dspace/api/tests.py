@@ -6,18 +6,18 @@ class UserTestCase(APITestCase):
 
   def test_create_user(self):
     self.post_data = self.data_user_object()
-    response = self.client.post('/api/user/', self.post_data, format='json')
+    response = self.client.post('/api/v1/user/', self.post_data, format='json')
     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-  # def test_get_user(self):
-  #   self.post_data = self.data_user_object()
+  def test_get_user(self):
+    self.post_data = self.data_user_object()
+    self.client.post('/api/v1/user/', self.post_data, format='json')
 
-  #   self.client.post('/api/user/', self.post_data, format='json')
-  #   response = self.client.get('/api/user/1')
-  #   self.assertEqual(response.status_code, status.HTTP_200_OK)
+    response = self.client.get('/api/v1/user/1/')
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
 
   def test_list_users(self):
-    response = self.client.get('/api/user/')
+    response = self.client.get('/api/v1/user/')
     self.assertEqual(response.status_code, status.HTTP_200_OK)
    
   
