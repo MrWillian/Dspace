@@ -7,4 +7,5 @@ COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN pip install django-tastypie
 RUN pip install djangorestframework
+RUN pip install haversine
 COPY . /code/
