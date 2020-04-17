@@ -9,4 +9,5 @@ RUN pip install django-tastypie
 RUN pip install djangorestframework
 RUN pip install haversine
 RUN pip install django-cors-headers
+RUN pip install django[bcrypt]
 COPY . /code/
