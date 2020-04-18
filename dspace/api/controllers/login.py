@@ -12,15 +12,21 @@ def auth_user(request):
   if request.method == 'POST':
     data = json.loads(request.body, object_hook=lambda d: Namespace(**d))
     user = User.objects.filter(email=data.email).get()
-    print(user.password)
 
     try:
       hashed = bcrypt.hashpw(data.password.encode('utf8'), bcrypt.gensalt())
-      
+      response_data = {}
       if not checkPassword(user.password.encode('utf8'), hashed):
-        return HttpResponse(status=401)
+        response_data = [{"status": '401'}]
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
       else:
-        return HttpResponse(status=200)
+        response_data = [{"status": '200', "user": {
+          'id': user.id,
+          'username': user.username,
+          'email': user.email,
+          }
+        }]
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
 
     except KeyError:
       return HttpResponseServerError('error')
