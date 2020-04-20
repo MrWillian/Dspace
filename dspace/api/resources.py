@@ -11,7 +11,8 @@ class UserResource(ModelResource):
     authorization = Authorization()
 
 class AddressResource(ModelResource):
-  user = fields.ForeignKey(UserResource, 'user')
+  user = fields.ToOneField(UserResource, 'user', null=True, blank=True)
+
   class Meta:
     queryset = Address.objects.all()
     resource_name = 'address'
